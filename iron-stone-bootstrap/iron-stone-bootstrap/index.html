@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IRON STONE | Streetwear masculino</title>
+<meta name="description" content="IRON STONE: streetwear masculino inspirado em concreto, arquitetura e rua.">
+<link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#produtos">Ir para os produtos</a>
+<p class="strip">FRETE GRÁTIS NAS COMPRAS ACIMA DE R$ 199</p>
+
+<header class="top sticky-top">
+  <nav class="navbar navbar-expand-lg" aria-label="Principal">
+    <div class="container-fluid px-3 px-lg-4">
+      <a class="navbar-brand logo" href="#inicio" aria-label="IRON STONE, início">IRON STONE</a>
+      <div class="d-flex flex-wrap justify-content-end align-items-center gap-1 order-lg-3">
+        <button id="searchBtn" class="btn ic" aria-label="Pesquisar produtos"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
+        <button id="bagBtn" class="btn ic" data-bs-toggle="offcanvas" data-bs-target="#bag" aria-controls="bag" aria-label="Abrir sacola"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 016 0v2"/></svg><span id="bagCount" class="badge rounded-pill">0</span></button>
+        <button id="openA11y" class="btn btn-sm" data-bs-toggle="offcanvas" data-bs-target="#a11y" aria-controls="a11y">Acessibilidade</button>
+        <button id="openLogin" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#loginDlg">Entrar</button>
+        <button id="menuBtn" class="navbar-toggler ms-1" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Abrir menu"><span class="navbar-toggler-icon"></span></button>
+      </div>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="#inicio">Início</a></li>
+          <li class="nav-item"><a class="nav-link" href="#produtos" data-cat="">Produtos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#produtos" data-cat="Camisetas">Camisetas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#produtos" data-cat="Moletons">Moletons</a></li>
+          <li class="nav-item"><a class="nav-link" href="#produtos" data-cat="Calças">Calças</a></li>
+          <li class="nav-item"><a class="nav-link" href="#produtos" data-cat="Acessórios">Acessórios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#produtos" data-new="1">Novidades</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<aside id="a11y" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="a11yTitle">
+  <div class="offcanvas-header"><h2 id="a11yTitle" class="h5 m-0">Acessibilidade</h2><button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button></div>
+  <div class="offcanvas-body d-grid gap-3 align-content-start">
+    <div class="d-flex gap-2"><button id="fontDown" class="btn" aria-label="Diminuir fonte">A−</button><button id="fontUp" class="btn" aria-label="Aumentar fonte">A+</button><button id="fontReset" class="btn">Padrão</button></div>
+    <button id="themeBtn" class="btn" aria-pressed="false">Modo escuro</button>
+    <div class="form-check"><input class="form-check-input" type="checkbox" id="contrastChk"><label class="form-check-label" for="contrastChk">Alto contraste</label></div>
+    <div class="form-check"><input class="form-check-input" type="checkbox" id="motionChk"><label class="form-check-label" for="motionChk">Reduzir animações</label></div>
+    <p id="a11yStatus" role="status" class="visually-hidden">Configurações aplicadas</p>
+  </div>
+</aside>
+
+<aside id="bag" class="offcanvas offcanvas-end" tabindex="-1" aria-labelledby="bagTitle">
+  <div class="offcanvas-header"><h2 id="bagTitle" class="h5 m-0">Sacola</h2><button id="closeBag" type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar sacola"></button></div>
+  <div class="offcanvas-body">
+    <ul id="bagList" class="list-unstyled m-0"></ul>
+    <p id="bagEmpty">Sua sacola está vazia. Explore a coleção e adicione uma peça.</p>
+    <div id="bagSum"><p class="d-flex justify-content-between"><span>Subtotal</span><strong id="subtotal"></strong></p><p id="ship" class="note"></p>
+    <button id="checkout" class="btn btn-brand w-100">Finalizar (demonstração)</button></div>
+  </div>
+</aside>
+
+<div id="viewDlg" class="modal fade" tabindex="-1" aria-labelledby="vName" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered"><div class="modal-content p-3">
+    <div id="vBody"></div>
+    <div class="d-flex gap-2 mt-3"><button id="vAdd" class="btn btn-brand">Adicionar à sacola</button><button id="vClose" class="btn" data-bs-dismiss="modal">Fechar</button></div>
+  </div></div>
+</div>
+
+<div id="loginDlg" class="modal fade" tabindex="-1" aria-labelledby="loginTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered"><div class="modal-content p-3">
+    <form id="loginForm" novalidate>
+      <h2 id="loginTitle" class="h4">Entrar na IRON STONE</h2>
+      <p class="note">Demonstração: nenhum dado é enviado ou guardado em servidor. Use qualquer e-mail válido e senha com 6+ caracteres.</p>
+      <label class="form-label" for="lEmail">E-mail</label><input class="form-control" id="lEmail" type="email" autocomplete="email" required>
+      <small class="err" id="lEmailErr" role="alert"></small>
+      <label class="form-label mt-2" for="lPass">Senha</label><input class="form-control" id="lPass" type="password" autocomplete="current-password" minlength="6" required>
+      <small class="err" id="lPassErr" role="alert"></small>
+      <div><button type="button" class="btn btn-link link" id="forgot">Esqueci minha senha</button></div>
+      <div class="d-flex gap-2 mt-2"><button class="btn btn-brand" type="submit">Entrar</button><button type="button" class="btn" id="closeLogin" data-bs-dismiss="modal">Cancelar</button></div>
+    </form>
+  </div></div>
+</div>
+<p id="toast" role="status" class="aviso" hidden></p>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="container"><div class="row g-4 align-items-stretch">
+      <div class="col-lg-6 hero-txt">
+        <h1>PESO DE PEDRA.<br>LEVEZA DE RUA.</h1>
+        <p>Streetwear masculino inspirado em concreto, arquitetura e rua. Cortes largos, tecidos pesados, zero excesso.</p>
+        <div><a class="btn btn-brand" href="#produtos">EXPLORAR COLEÇÃO</a></div>
+      </div>
+      <div class="col-lg-6"><div class="ph hero-img" data-slot="hero.jpg" data-alt="Modelo vestindo moletom e calça cargo pretos em cenário urbano"></div></div>
+    </div></div>
+  </section>
+
+  <section id="cats" class="container py-5" aria-labelledby="hCats"><h2 id="hCats">Categorias</h2><ul id="catGrid" class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3 list-unstyled"></ul></section>
+
+  <section id="destaques" class="container py-5" aria-labelledby="hDest">
+    <h2 id="hDest">Destaques da semana</h2>
+    <div class="carousel" role="region" aria-roledescription="carrossel" aria-label="Destaques">
+      <div id="slides"></div>
+      <div class="d-flex flex-wrap align-items-center gap-2 mt-3">
+        <button id="prev" class="btn" aria-label="Slide anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button id="pause" class="btn" aria-pressed="false">Pausar</button>
+        <button id="next" class="btn" aria-label="Próximo slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+        <span id="pos" role="status"></span><div id="dots" class="dots ms-auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="produtos" class="container py-5" aria-labelledby="hProd">
+    <h2 id="hProd">Coleção</h2>
+    <form role="search" class="mb-3" onsubmit="return false">
+      <div class="mb-3"><label class="form-label" for="q">Buscar produto</label><input class="form-control busca" id="q" type="search" placeholder="Ex.: cargo, hoodie, tee"></div>
+      <div id="chips" class="d-flex flex-wrap gap-2 mb-3" role="group" aria-label="Categoria"></div>
+      <div class="row g-3 align-items-end">
+        <div class="col-auto"><label class="form-label" for="price">Preço</label><select class="form-select" id="price"><option value="">Todos</option><option value="0-100">Até R$ 100</option><option value="100-200">R$ 100 a R$ 200</option><option value="200+">Acima de R$ 200</option></select></div>
+        <div class="col-auto"><label class="form-label" for="sort">Ordenar por</label><select class="form-select" id="sort"><option value="recentes">Mais recentes</option><option value="asc">Menor preço</option><option value="desc">Maior preço</option></select></div>
+        <div class="col-auto form-check ms-2"><input class="form-check-input" type="checkbox" id="fNew"><label class="form-check-label" for="fNew">Novidades</label></div>
+        <div class="col-auto form-check"><input class="form-check-input" type="checkbox" id="fBest"><label class="form-check-label" for="fBest">Mais vendidos</label></div>
+        <div class="col-auto"><button type="button" id="clear" class="btn btn-link link">Limpar filtros</button></div>
+      </div>
+    </form>
+    <p id="count" role="status"></p>
+    <ul id="grid" class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4 list-unstyled"></ul>
+  </section>
+
+  <section id="beneficios" class="container py-5" aria-labelledby="hBen">
+    <h2 id="hBen">Compre sem atrito</h2>
+    <div class="row g-4">
+      <div class="col-md-4"><article class="beneficio"><h3>Frete grátis</h3><p>Nas compras acima de R$ 199.</p></article></div>
+      <div class="col-md-4"><article class="beneficio"><h3>Pix ou cartão</h3><p>Pague do jeito que preferir.</p></article></div>
+      <div class="col-md-4"><article class="beneficio"><h3>Troca em 30 dias</h3><p>Não serviu? Peça a troca em até 30 dias.</p></article></div>
+    </div>
+  </section>
+
+  <section id="sobre" class="container py-5" aria-labelledby="hAbout">
+    <div class="row gy-4 gx-lg-5 align-items-center">
+      <div class="col-md-6"><div class="ph about-img" data-slot="sobre.jpg" data-alt="Fachada de concreto em área urbana"></div></div>
+      <div class="col-md-6"><h2 id="hAbout">Sobre a IRON STONE</h2>
+      <p>Nascemos da rua e do concreto. Peças pesadas no tecido e leves no uso, com cortes largos e cores que não pedem licença. Menos logotipo, mais atitude.</p>
+      <p class="note">IRON STONE é uma marca fictícia criada para um projeto acadêmico.</p></div>
+    </div>
+  </section>
+
+  <section id="contato" class="container py-5" aria-labelledby="hCont">
+    <h2 id="hCont">Fale com a gente</h2>
+    <form id="contactForm" class="col-lg-6 p-0" novalidate>
+      <label class="form-label" for="cName">Nome</label><input class="form-control" id="cName" required autocomplete="name"><small class="err" id="cNameErr" role="alert"></small>
+      <label class="form-label mt-2" for="cEmail">E-mail</label><input class="form-control" id="cEmail" type="email" required autocomplete="email"><small class="err" id="cEmailErr" role="alert"></small>
+      <label class="form-label mt-2" for="cSubject">Assunto</label><input class="form-control" id="cSubject" required><small class="err" id="cSubjectErr" role="alert"></small>
+      <label class="form-label mt-2" for="cMsg">Mensagem (mínimo 10 caracteres)</label><textarea class="form-control" id="cMsg" rows="4" required></textarea><small class="err" id="cMsgErr" role="alert"></small>
+      <button class="btn btn-brand w-100 mt-3" type="submit">Enviar mensagem</button>
+    </form>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="container"><div class="row g-4">
+    <div class="col-md-6 col-lg-3"><strong class="logo">IRON STONE</strong><p>Streetwear masculino. Projeto acadêmico fictício, desenvolvido para a disciplina Desenvolvimento de Interfaces (CEUB, 2/2026).</p></div>
+    <nav class="col-6 col-lg-3" aria-label="Rodapé: navegação"><strong>Navegação</strong><a href="#inicio">Início</a><a href="#produtos">Produtos</a><a href="#sobre">Sobre</a><a href="#contato">Contato</a></nav>
+    <nav class="col-6 col-lg-3" aria-label="Rodapé: categorias"><strong>Categorias</strong><span id="footCats"></span></nav>
+    <div class="col-md-6 col-lg-3"><strong>Contato</strong><p>contato@ironstone.example<br>Redes sociais: em breve (perfis fictícios, não publicados).</p><a href="https://github.com/matheusalmeidadias6-lang">Código no GitHub</a></div>
+    <p class="legal col-12">© 2026 IRON STONE. Nenhuma venda real é realizada. Créditos das imagens: veja assets/CREDITS.md. Interface construída com Bootstrap 5.3.3 (licença MIT).</p>
+  </div></div>
+</footer>
+<script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
