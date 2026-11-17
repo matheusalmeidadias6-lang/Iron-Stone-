@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IRON STONE | Streetwear masculino</title>
+<meta name="description" content="IRON STONE: streetwear masculino inspirado em concreto, arquitetura e rua.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#produtos">Ir para os produtos</a>
+<p class="strip">FRETE GRÁTIS NAS COMPRAS ACIMA DE R$ 199</p>
+<header class="top">
+  <button id="menuBtn" class="ic menu" aria-expanded="false" aria-controls="nav" aria-label="Abrir menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  <a class="logo" href="#inicio" aria-label="IRON STONE, início">IRON STONE</a>
+  <nav id="nav" aria-label="Principal">
+    <a href="#inicio">Início</a><a href="#produtos" data-cat="">Produtos</a>
+    <a href="#produtos" data-cat="Camisetas">Camisetas</a><a href="#produtos" data-cat="Moletons">Moletons</a><a href="#produtos" data-cat="Calças">Calças</a><a href="#produtos" data-cat="Acessórios">Acessórios</a>
+    <a href="#produtos" data-new="1">Novidades</a><a href="#contato">Contato</a>
+  </nav>
+  <div class="tools">
+    <button id="searchBtn" class="ic" aria-label="Pesquisar produtos"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
+    <button id="bagBtn" class="ic" aria-label="Abrir sacola" aria-controls="bag"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 016 0v2"/></svg><span id="bagCount" class="badge">0</span></button>
+    <button id="openA11y" class="txt" aria-expanded="false" aria-controls="a11y">Acessibilidade</button>
+    <button id="openLogin" class="txt">Entrar</button>
+  </div>
+</header>
+
+<aside id="a11y" class="panel" aria-label="Painel de acessibilidade" hidden>
+  <h2>Acessibilidade</h2>
+  <div class="row"><button id="fontDown" aria-label="Diminuir fonte">A−</button><button id="fontUp" aria-label="Aumentar fonte">A+</button><button id="fontReset">Padrão</button></div>
+  <button id="themeBtn" aria-pressed="false">Modo escuro</button>
+  <label class="chk"><input type="checkbox" id="contrastChk"> Alto contraste</label>
+  <label class="chk"><input type="checkbox" id="motionChk"> Reduzir animações</label>
+  <p id="a11yStatus" role="status" class="sr">Configurações aplicadas</p>
+</aside>
+
+<aside id="bag" class="drawer" aria-label="Sacola de compras" hidden>
+  <div class="row between"><h2>Sacola</h2><button id="closeBag">Fechar</button></div>
+  <ul id="bagList" class="bag-list"></ul>
+  <p id="bagEmpty">Sua sacola está vazia. Explore a coleção e adicione uma peça.</p>
+  <div id="bagSum"><p class="row between"><span>Subtotal</span><strong id="subtotal"></strong></p><p id="ship" class="note"></p>
+  <button id="checkout" class="cta">Finalizar (demonstração)</button></div>
+</aside>
+
+<dialog id="viewDlg" aria-labelledby="vName"><div id="vBody"></div><div class="row"><button id="vAdd" class="cta">Adicionar à sacola</button><button id="vClose">Fechar</button></div></dialog>
+
+<dialog id="loginDlg" aria-labelledby="loginTitle">
+  <form id="loginForm" novalidate>
+    <h2 id="loginTitle">Entrar na IRON STONE</h2>
+    <p class="note">Demonstração: nenhum dado é enviado ou guardado em servidor. Use qualquer e-mail válido e senha com 6+ caracteres.</p>
+    <label for="lEmail">E-mail</label><input id="lEmail" type="email" autocomplete="email" required>
+    <small class="err" id="lEmailErr" role="alert"></small>
+    <label for="lPass">Senha</label><input id="lPass" type="password" autocomplete="current-password" minlength="6" required>
+    <small class="err" id="lPassErr" role="alert"></small>
+    <button type="button" class="link" id="forgot">Esqueci minha senha</button>
+    <div class="row"><button class="cta" type="submit">Entrar</button><button type="button" id="closeLogin">Cancelar</button></div>
+  </form>
+</dialog>
+<p id="toast" role="status" class="toast" hidden></p>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="hero-txt">
+      <h1>PESO DE PEDRA.<br>LEVEZA DE RUA.</h1>
+      <p>Streetwear masculino inspirado em concreto, arquitetura e rua. Cortes largos, tecidos pesados, zero excesso.</p>
+      <a class="cta" href="#produtos">EXPLORAR COLEÇÃO</a>
+    </div>
+    <div class="ph hero-img" data-slot="hero.jpg" data-alt="Modelo vestindo moletom e calça cargo pretos em cenário urbano"></div>
+  </section>
+
+  <section id="cats" aria-labelledby="hCats"><h2 id="hCats">Categorias</h2><ul id="catGrid" class="cat-grid"></ul></section>
+
+  <section id="destaques" aria-labelledby="hDest">
+    <h2 id="hDest">Destaques da semana</h2>
+    <div class="carousel" role="region" aria-roledescription="carrossel" aria-label="Destaques">
+      <div id="slides"></div>
+      <div class="row">
+        <button id="prev" aria-label="Slide anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button id="pause" aria-pressed="false">Pausar</button>
+        <button id="next" aria-label="Próximo slide"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+        <span id="pos" role="status"></span><div id="dots" class="dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="produtos" aria-labelledby="hProd">
+    <h2 id="hProd">Coleção</h2>
+    <form role="search" class="filters" onsubmit="return false">
+      <div class="f-main"><label for="q">Buscar produto</label><input id="q" type="search" placeholder="Ex.: cargo, hoodie, tee"></div>
+      <div id="chips" class="chips" role="group" aria-label="Categoria"></div>
+      <div class="f-row">
+        <div><label for="price">Preço</label><select id="price"><option value="">Todos</option><option value="0-100">Até R$ 100</option><option value="100-200">R$ 100 a R$ 200</option><option value="200+">Acima de R$ 200</option></select></div>
+        <div><label for="sort">Ordenar por</label><select id="sort"><option value="rec">Mais recentes</option><option value="asc">Menor preço</option><option value="desc">Maior preço</option></select></div>
+        <label class="chk"><input type="checkbox" id="fNew"> Novidades</label>
+        <label class="chk"><input type="checkbox" id="fBest"> Mais vendidos</label>
+        <button type="button" id="clear" class="link">Limpar filtros</button>
+      </div>
+    </form>
+    <p id="count" role="status"></p>
+    <ul id="grid" class="grid"></ul>
+  </section>
+
+  <section id="beneficios" aria-labelledby="hBen">
+    <h2 id="hBen">Compre sem atrito</h2>
+    <div class="cards">
+      <article class="card-b"><h3>Frete grátis</h3><p>Nas compras acima de R$ 199.</p></article>
+      <article class="card-b"><h3>Pix ou cartão</h3><p>Pague do jeito que preferir.</p></article>
+      <article class="card-b"><h3>Troca em 30 dias</h3><p>Não serviu? Peça a troca em até 30 dias.</p></article>
+    </div>
+  </section>
+
+  <section id="sobre" class="about" aria-labelledby="hAbout">
+    <div class="ph about-img" data-slot="sobre.jpg" data-alt="Fachada de concreto em área urbana"></div>
+    <div><h2 id="hAbout">Sobre a IRON STONE</h2>
+    <p>Nascemos da rua e do concreto. Peças pesadas no tecido e leves no uso, com cortes largos e cores que não pedem licença. Menos logotipo, mais atitude.</p>
+    <p class="note">IRON STONE é uma marca fictícia criada para um projeto acadêmico.</p></div>
+  </section>
+
+  <section id="contato" aria-labelledby="hCont">
+    <h2 id="hCont">Fale com a gente</h2>
+    <form id="contactForm" class="form" novalidate>
+      <label for="cName">Nome</label><input id="cName" required autocomplete="name"><small class="err" id="cNameErr" role="alert"></small>
+      <label for="cEmail">E-mail</label><input id="cEmail" type="email" required autocomplete="email"><small class="err" id="cEmailErr" role="alert"></small>
+      <label for="cSubject">Assunto</label><input id="cSubject" required><small class="err" id="cSubjectErr" role="alert"></small>
+      <label for="cMsg">Mensagem (mínimo 10 caracteres)</label><textarea id="cMsg" rows="4" required></textarea><small class="err" id="cMsgErr" role="alert"></small>
+      <button class="cta" type="submit">Enviar mensagem</button>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div><strong class="logo">IRON STONE</strong><p>Streetwear masculino. Projeto acadêmico fictício, desenvolvido para a disciplina Desenvolvimento de Interfaces (CEUB, 2/2026).</p></div>
+  <nav aria-label="Rodapé: navegação"><strong>Navegação</strong><a href="#inicio">Início</a><a href="#produtos">Produtos</a><a href="#sobre">Sobre</a><a href="#contato">Contato</a></nav>
+  <nav aria-label="Rodapé: categorias"><strong>Categorias</strong><span id="footCats"></span></nav>
+  <div><strong>Contato</strong><p>contato@ironstone.example<br>Redes sociais: em breve (perfis fictícios, não publicados).</p><a href="https://github.com/matheusalmeidadias6-lang">Código no GitHub</a></div>
+  <p class="legal">© 2026 IRON STONE. Nenhuma venda real é realizada. Créditos das imagens: veja assets/CREDITS.md.</p>
+</footer>
+<script src="js/app.js"></script>
+</body>
+</html>
